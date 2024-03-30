@@ -1,0 +1,6 @@
+print("Welcome to the To-Do List App!\n")
+print("[1] [Add] a task")
+print("[2] [View] tasks")
+print("[3] [Mark] a task as complete")
+print("[4] [Del]ete a task")
+print("[5] [Quit]")
