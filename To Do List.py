@@ -75,20 +75,31 @@ def view_tasks(display_msg):
         print("You do not have any tasks yet!")
     
 def change_status_task():
-    print("Which task number would you like to update the status of?")
-    view_tasks(False)
-    task_num = input()
-    set_status(False, task_num)
+    if todo_list:
+        print("Which task number would you like to update the status of?")
+        view_tasks(False)
+        task_num = input()
+        set_status(False, task_num)
+    else: # if todo_list is empty
+        print("You do not have any tasks yet!")
     
 def delete_task():
-    print("Which task would you like to delete?")
-    view_tasks(False)
-    to_delete_priority = input()
-    try:
-        to_delete_number = int(to_delete_priority)
-    except:
-        print("Input must be a number within the range of tasks currently on the list (" + get_list_range() + ")")
-
+    if todo_list:
+        print("Which task would you like to delete?")
+        view_tasks(False)
+        to_delete = input()
+        try:
+            to_delete = int(to_delete)
+            if 1 <= to_delete and to_delete <= len(todo_list):
+                delete_index = to_delete - 1
+                print(f"Removed task \'{todo_list[delete_index][TASK_INDEX_DESCRIPTION]}\' from list!")
+                todo_list.pop(delete_index)
+            else: # input was outside range of list
+                print("Input must be within the range of tasks currently on the list (" + get_list_range() + ")")
+        except: # Input was not a number
+            print("Input must be a number within the range of tasks currently on the list (" + get_list_range() + ")")
+    else: # if todo_list is empty
+        print("You do not have any tasks yet!")
     
 def quit_app():
     print("Thank you for using the To-Do app!")
@@ -101,7 +112,7 @@ def set_description():
         if description:
             return description
         else:
-            print("You must input something for description!")
+            print("You must input something for the description!")
     
 def set_priority():
     while True:
@@ -142,38 +153,39 @@ def set_status(new_task, task_priority = -1):
         try:
             task_number = int(task_priority)
             if task_number >= 1 and task_number <= len(todo_list):
+                task_index = task_number - 1
                 while True:
                     status = input("Enter a status for this task [RED/YELLOW/GREEN], or [+]/[-] to move status forward or backward\n")                    
                     if status.upper() == "RED":
-                        todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_RED]
+                        todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_RED]
                         print(f"Status of priority task {task_number} set to RED")
                         break
                     elif status.upper() == "YELLOW":
-                        todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_YELLOW]
+                        todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_YELLOW]
                         print(f"Status of priority task {task_number} set to YELLOW")
                         break
                     elif status.upper() == "GREEN":
-                        todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_GREEN]
+                        todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_GREEN]
                         print(f"Status of priority task {task_number} set to GREEN")
                         break
                     elif status == "+":
-                        if todo_list[task_number][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_RED]:
-                            todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_YELLOW]
+                        if todo_list[task_index][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_RED]:
+                            todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_YELLOW]
                             print(f"Status of priority task {task_number} set to YELLOW")
                             break
-                        elif todo_list[task_number][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_YELLOW]:
-                            todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_GREEN]
+                        elif todo_list[task_index][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_YELLOW]:
+                            todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_GREEN]
                             print(f"Status of priority task {task_number} set to GREEN")
                             break
                         else: # todo_list[task_number][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_GREEN]                            
                             print(f"Status of priority task {task_number} can not be moved further ahead than its current status: GREEN")
                     elif status == "-":
-                        if todo_list[task_number][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_GREEN]:
-                            todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_YELLOW]
+                        if todo_list[task_index][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_GREEN]:
+                            todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_YELLOW]
                             print(f"Status of priority task {task_number} set to YELLOW")
                             break
-                        elif todo_list[task_number][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_YELLOW]:
-                            todo_list[task_number][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_RED]
+                        elif todo_list[task_index][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_YELLOW]:
+                            todo_list[task_index][TASK_INDEX_STATUS] = STATUS_LIST[STATUS_INDEX_RED]
                             print(f"Status of priority task {task_number} set to RED")
                             break
                         else: # todo_list[task_number][TASK_INDEX_STATUS] == STATUS_LIST[STATUS_INDEX_RED]                            
