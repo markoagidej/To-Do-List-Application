@@ -32,7 +32,7 @@ This To-Do app has the following functions:
 ## How to use:
 
 Once you run the program you will see a list of 5 actions you can perform and will be prompted to choose an action.
-Each action is designated with a number and a key-word in brackets[]. Type an option in brackets and press enter to perform the associated action.
+Each action is designated with a number and a key-word in brackets[]. Type an option in brackets and press ENTER to perform the associated action.
 
 ### 1. Adding Tasks
     Add a task to the list!
@@ -54,8 +54,8 @@ Each action is designated with a number and a key-word in brackets[]. Type an op
             RED     ->        Yellow       ->   GREEN
         (unstarted)     (work-in-progress)     (done)
     You can simply type '+' or '-' to move the status one step forward or backward.
-    For example, if you are just starting work on a task (Going from RED to YELLOW), type '+' and enter, and the task will have its status changed from RED to YELLOW!
-    Alternatively, if you thought a task was done, but you need to work on it again, type '-' and enter. The task will change from GREEN to YELLOW!
+    For example, if you are just starting work on a task (Going from RED to YELLOW), type '+' and ENTER, and the task will have its status changed from RED to YELLOW!
+    Alternatively, if you thought a task was done, but you need to work on it again, type '-' and ENTER. The task will change from GREEN to YELLOW!
 
 ### 4. Deleting Tasks
     Remove a task from the list!
