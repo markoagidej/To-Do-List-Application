@@ -15,7 +15,7 @@ Description is the only attribute you must input something for.
 
 Priority determines the order of the list. If you do not enter a value here, the task will automatically go to the bottom of the list and be assigned the appropriate priority number.
 
-Completion Status will be represented with a color. GREEN = Done, YELLOW = WIP, RED = Unstarted. If you do not enter a value, it will default to Red.
+Completion Status will be represented with a color. GREEN = Done, YELLOW = Work-In-Progress, RED = Unstarted. If you do not enter a value, it will default to RED.
 
 Create date is automatically created!
 
@@ -38,8 +38,9 @@ Each action is designated with a number and a key-word in brackets[]. Type an op
     Add a task to the list!
 
     You will be promted to enter a description for the task.
+    Then you can then choose to add a Priority, Status, and Due Date.
+        *NOTE: If it is the first task int the list you will not be asked for a Priority!
     The Create Date will be automatically created for you!
-    Then you will be prompted to add a Priority, Status, and Due Date.
 
 ### 2. Viewing Tasks
     This will display the entire list of tasks and their associated attributes in order of priority
